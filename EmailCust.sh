@@ -1,51 +1,77 @@
 #!/bin/bash
-echo ======================================
+
+function emaillu
+	{
+		grep "$emailRecipients" CustomerDetails.txt
+	}
+clear
+echo =======================================
 echo "Email Wizard"
-echo ======================================
-echo "Please select your option:"
+echo =======================================
+echo
+echo "Email to: " 
+cat tmp/emailRecipients.txt
+echo
+echo "Subject: "
+cat tmp/emailSubject.txt
+echo
+echo "Email body: "
+cat tmp/composeEmail.txt
+echo
+echo ..................................
+echo 
 echo "1. Add a recipient"
 echo "2. Add all recipients"
 echo "3. Add Subject"
 echo "4. Compose Email"
-echo "5. Return to Main Menu"
-echo 
-echo "0. Exit"
-
-echo ======================================
-
+echo "5. --> Send"
+echo "6. Main Menu"
+echo
+echo "Please select menu number:"
 read input
-
 case $input in
-
 	1) 
 clear
-	echo ======================================
-	echo "Email Wizard"
-	echo ======================================
-	grep @ CustomerDetails.txt | awk '{print $1 " " $2 ", " $6}'
+	grep @ CustomerDetails.txt | awk '{print $1 " " $2 "\t " $6}'
 	echo
 	echo "Please enter email address and press return"
-	read emailRecipient 
-	e cho "$emailRecipient" >> tmp/emailrecipient.txt
-	chmod +x tmp/emailrecipient.txt
-clear
-	echo "Email to:"
+	read emailRecipients 
 	
-	if [ tmp/emailrecipient.txt != null ]
+# validate email contains valid characters
+case $emailRecipients in
+	*@?*.?*) 
+	;;
+	*)
+
+	echo $emailRecipients  is not a valid email address
+	echo
+	echo "Please enter email address"
+	read emailRecipients
+
+esac
+
+if [[ emaillu = true ]];
 	then
-		cat tmp/emailrecipient.txt 
-	fi
+		echo "That is not a customer email"
+	else	
+	  break
+fi
+#clear
+	echo "$emailRecipients" >> tmp/emailRecipients.txt
+	chmod +x tmp/emailRecipients.txt
+		
 	./EmailCust.sh
 	;;
 	 
 
 	2) 
 clear 
-	grep "$email" CustomerDetails.txt | awk '{print $6}' >> tmp/emailrecipient.txt
-#	cat CustomerDetails.txt >> tmp/emailrecipient.txt
-	chmod +x tmp/emailrecipient.txt
-	echo "Email to: " 
-	cat tmp/emailrecipient.txt 
+# takes the email field from all customers and sends them to temporary emailRecipients
+	grep "$email" CustomerDetails.txt | awk '{print $6}' >> tmp/emailRecipients.txt
+
+# grant read n'write access to file
+
+	chmod +x tmp/emailRecipients.txt
 	./EmailCust.sh
 	;;
 
@@ -61,60 +87,79 @@ clear
 	echo
 	
 	
-	echo "Email to:"  
-	cat tmp/emailrecipient.txt
-	echo "Subject: " 
+		echo "Subject: " 
 	cat tmp/emailSubject.txt
 	
 	;;
-
 	4) 
-	nano tmp/ComposeEmail.txt 
-	#grep $ComposeEmail.txt >> tmp/EmailBody.txt
-	if [ 'tmp/emailrecipient.txt' != null ] || [ tmp/emailSubject.txt != null ]
-		then
-			echo "Recipients:" 
-			cat tmp/emailrecipient.txt
-			echo "Subject:"
-			cat tmp/emailSubject.txt
-			echo
-			echo "Email Body:"
-			cat tmp/ComposeEmail.txt
-			echo
-		
-	else
-		./EmailCust.sh
+	nano tmp/composeEmail.txt 
+#	
+#	if [ 'tmp/emailrecipient.txt' != null ] || [ 'tmp/emailSubject.txt' != null ]
+#		then
+#			echo "Recipients:" 
+#			cat tmp/emailRecipients.txt
+#			echo "Subject:"
+#			cat tmp/emailSubject.txt
+#			echo
+#			echo "Email Body:"
+#			cat tmp/composeEmail.txt
+#			echo
+#		else
+#
+		./EmailCust.sh 
+#/tmp/emailRecipients.txt
+#		fi
+	;;
+	5) 	
+	clear
+		echo "Recipients:" 
+		cat tmp/emailRecipients.txt
+		echo "Subject:"
+		cat tmp/emailSubject.txt
+		echo
+		echo "Email Body:"
+		cat tmp/composeEmail.txt
+		echo
+	echo "Press <s> to send or <e> to edit"
 	
-	fi
-
-
-echo "Press s to send or <e> to edit"
-
-read input
+	read input
 
 	if [ $input == 's' ] 
-		then mail 'tmp/emailrecipient.txt' -s 'tmp/emailSubject.txt' < 'tmp/ComposeEmail.txt'
+		then mail 'tmp/emailRecipients.txt' -s 'tmp/emailSubject.txt' < 'tmp/ComposeEmail.txt'
 	elif [ $input == 'e' ]
-		then  ./EmailCust.sh
+		then  
+		./EmailCust.sh
 	fi
-clear
-echo "Message sent."
-echo
-echo "Press <e> for email menu or <m> for main menu"
-echo
-read menuinput
+        clear
+        echo "Message sent to:"
+        cat tmp/emailRecipients.txt
+	echo
+        echo "<e> to send another Email or "
+	echo "	    <m> for Main Menu"
+        echo
+        read menuinput
 
-if [ $menuinput == 'e' ]
-		then ./EmailCust.sh
+# clear tmp email files to prepare to send another email
+	if [ $menuinput == 'e' ]
+		then 
+		cp /dev/null tmp/composeEmail.txt
+		cp /dev/null tmp/emailRecipients.txt 
+		cp /dev/null tmp/emailSubject.txt	
+		./EmailCust.sh
 	elif [ $menuinput == 'm' ]
 		then ./Menu.sh
 	
-fi
+        fi
+        ;;
+
+	6) 
+# return to main menu
+	./Menu.sh
 	;;
 
-	5) ./Menu.sh
+	*)
+# if any other key is pressed the email menu screen is refreshed
+	./EmailCust.sh	
 	;;
+
 esac
-
-	
-
