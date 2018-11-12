@@ -1,10 +1,10 @@
 #!/bin/bash
 
-function emaillu
-	{
-		grep "$emailRecipients" CustomerDetails.txt
-	}
+
+
+
 clear
+echo  $(date)
 echo =======================================
 echo "Email Wizard"
 echo =======================================
@@ -29,6 +29,7 @@ echo "6. Main Menu"
 echo
 echo "Please select menu number:"
 read input
+
 case $input in
 	1) 
 clear
@@ -38,25 +39,18 @@ clear
 	read emailRecipients 
 	
 # validate email contains valid characters
-case $emailRecipients in
-	*@?*.?*) 
-	;;
-	*)
+	case $emailRecipients in
+		*@?*.?*) 
+		;;
+		*)
 
-	echo $emailRecipients  is not a valid email address
-	echo
-	echo "Please enter email address"
-	read emailRecipients
+		echo $emailRecipients  is not a valid email address
+		echo
+		echo "Please enter email address"
+		read emailRecipients
 
-esac
+	esac
 
-if [[ emaillu = true ]];
-	then
-		echo "That is not a customer email"
-	else	
-	  break
-fi
-#clear
 	echo "$emailRecipients" >> tmp/emailRecipients.txt
 	chmod +x tmp/emailRecipients.txt
 		
@@ -66,16 +60,18 @@ fi
 
 	2) 
 clear 
+# removes existing recipients to avoid dupilicate sending.
+	cp /dev/null tmp/emailRecipients.txt 
 # takes the email field from all customers and sends them to temporary emailRecipients
 	grep "$email" CustomerDetails.txt | awk '{print $6}' >> tmp/emailRecipients.txt
 
 # grant read n'write access to file
-
 	chmod +x tmp/emailRecipients.txt
 	./EmailCust.sh
 	;;
 
 	3) 
+# takes in a single line subject
 clear
 	echo "Please enter subject and press return"
 	echo 
@@ -92,65 +88,74 @@ clear
 	
 	;;
 	4) 
+# creat a temporary email body file
 	nano tmp/composeEmail.txt 
-#	
-#	if [ 'tmp/emailrecipient.txt' != null ] || [ 'tmp/emailSubject.txt' != null ]
-#		then
-#			echo "Recipients:" 
-#			cat tmp/emailRecipients.txt
-#			echo "Subject:"
-#			cat tmp/emailSubject.txt
-#			echo
-#			echo "Email Body:"
-#			cat tmp/composeEmail.txt
-#			echo
-#		else
-#
+# returns user to email menu
 		./EmailCust.sh 
-#/tmp/emailRecipients.txt
-#		fi
 	;;
-	5) 	
-	clear
-		echo "Recipients:" 
-		cat tmp/emailRecipients.txt
-		echo "Subject:"
-		cat tmp/emailSubject.txt
-		echo
-		echo "Email Body:"
-		cat tmp/composeEmail.txt
-		echo
-	echo "Press <s> to send or <e> to edit"
 	
-	read input
-
-	if [ $input == 's' ] 
-		then mail 'tmp/emailRecipients.txt' -s 'tmp/emailSubject.txt' < 'tmp/ComposeEmail.txt'
-	elif [ $input == 'e' ]
-		then  
-		./EmailCust.sh
-	fi
+	5) 	
+#	#clear
+#		echo "Recipients:" 
+#		cat tmp/emailRecipients.txt
+#		echo
+#		echo "Subject:"
+#		cat tmp/emailSubject.txt
+#		echo
+#		echo "Email Body:"
+#		cat tmp/composeEmail.txt
+#		echo
+#	echo "Press <s> to send or <e> to edit"
+#	
+#	read input
+#
+	#error possibly
+#	if [ $input == 's' ] 
+#		then 
+		#send mail to recipients
+			mail 'tmp/emailRecipients.txt' -s 'tmp/emailSubject.txt' < 'tmp/ComposeEmail.txt' 
+		# write details to email log	
+			echo "//////////////////////////" >> tmp/emailLog.txt
+			echo "Date:" "$(date)"  >> tmp/emailLog.txt
+			cat tmp/emailRecipients.txt >> tmp/emailLog.txt
+			cat tmp/emailSubject.txt >> tmp/emailLog.txt
+			cat tmp/ComposeEmail.txt >> tmp/emailLog.txt
+#	elif [ $input == 'e' ]
+#		then  
+#		./EmailCust.sh
+#	fi
+#	
         clear
+		echo  $(date)
+		echo =======================================
+		echo "Email Wizard"
+		echo =======================================
+		echo
         echo "Message sent to:"
+		echo
         cat tmp/emailRecipients.txt
 	echo
-        echo "<e> to send another Email or "
-	echo "	    <m> for Main Menu"
+        echo "[s]end another Email or "
+	    echo "[m]ain Menu"
         echo
         read menuinput
 
 # clear tmp email files to prepare to send another email
-	if [ $menuinput == 'e' ]
+	if [ $menuinput == "s" ]
 		then 
 		cp /dev/null tmp/composeEmail.txt
 		cp /dev/null tmp/emailRecipients.txt 
 		cp /dev/null tmp/emailSubject.txt	
 		./EmailCust.sh
-	elif [ $menuinput == 'm' ]
-		then ./Menu.sh
+	elif [ $menuinput == "m" ]
+	then
+		#cp /dev/null tmp/composeEmail.txt
+		#cp /dev/null tmp/emailRecipients.txt 
+	   # cp /dev/null tmp/emailSubject.txt
+		 ./Menu.sh
 	
         fi
-        ;;
+    ;;    
 
 	6) 
 # return to main menu
@@ -161,5 +166,5 @@ clear
 # if any other key is pressed the email menu screen is refreshed
 	./EmailCust.sh	
 	;;
-
+	
 esac

@@ -1,0 +1,75 @@
+/nDate: Mon, Nov 12, 2018  3:24:30 PM
+buddy@holly.com
+frank@skinner.com
+frank@zappa.com
+john@coltrane.com
+john@entwistle.com
+mark@smith.com
+norman@cook.com
+king@tubby.com
+peter@tosh.com
+Shaun@ryder.co.uk
+sly@stone.com
+//////////////////////////
+Date: Mon, Nov 12, 2018  3:26:55 PM
+buddy@holly.com
+frank@skinner.com
+frank@zappa.com
+john@coltrane.com
+john@entwistle.com
+mark@smith.com
+norman@cook.com
+king@tubby.com
+peter@tosh.com
+Shaun@ryder.co.uk
+sly@stone.com
+//////////////////////////
+Date: Mon, Nov 12, 2018  3:27:02 PM
+buddy@holly.com
+frank@skinner.com
+frank@zappa.com
+john@coltrane.com
+john@entwistle.com
+mark@smith.com
+norman@cook.com
+king@tubby.com
+peter@tosh.com
+Shaun@ryder.co.uk
+sly@stone.com
+//////////////////////////
+Date: Mon, Nov 12, 2018  3:27:04 PM
+buddy@holly.com
+frank@skinner.com
+frank@zappa.com
+john@coltrane.com
+john@entwistle.com
+mark@smith.com
+norman@cook.com
+king@tubby.com
+peter@tosh.com
+Shaun@ryder.co.uk
+sly@stone.com
+//////////////////////////
+Date: Mon, Nov 12, 2018  3:27:06 PM
+buddy@holly.com
+frank@skinner.com
+frank@zappa.com
+john@coltrane.com
+john@entwistle.com
+mark@smith.com
+norman@cook.com
+king@tubby.com
+peter@tosh.com
+Shaun@ryder.co.uk
+sly@stone.com
+//////////////////////////
+Date: Mon, Nov 12, 2018  3:35:25 PM
+norman@cook.com
+Exciting new sound!
+Hi Fatboy,
+
+Call me!
+
+Exciting new things!
+
+Jim

@@ -85,6 +85,7 @@ do
      if [[ -z "${eircode}" ]]; 
 	then
           echo "Eircode cannot be empty. "
+		  echo "Please enter customer county then press Enter"
      else          
           break
      fi
@@ -101,7 +102,7 @@ echo "County: $address"
 echo "Eircode: $eircode"
 echo "...................................."
 
-echo "Please enter mobile number (no spaces, 10 digits)"
+echo "Please enter mobile number and press Enter"
 
 # validate mobile No is exactly 10 digits long
 while read mobile
@@ -128,19 +129,41 @@ echo "Eircode: $eircode"
 echo "Mobile: $mobile"
 echo "...................................."
 
-echo "Please enter email address"
+echo "Please enter email address and press Enter"
 
-read email
-case $email in
-	*@?*.?*) 
-	;;
-	*)
-	echo $email is not a valid email address
-	echo
-	echo "Please enter email address"
-	read email
+while read email;
 
-esac
+do
+	#if [[ -z "${email}" ]] ;
+	 #then
+#	  echo "Email cannot be blank"
+       
+	    if echo "${email}" | grep '^[a-zA-Z0-9]*@[a-zA-Z0-9]*\.[a-zA-Z0-9]*$' >/dev/null; then
+        break
+    else
+        echo Not Valid
+    fi
+	   
+#	   elif [[ $email =~ '(.+)@(.+)' ]] ; 
+#			case $email in
+#			*@?*.?*) 
+#			;;
+#			*)
+#			echo $email is not a valid email address
+#			echo
+#			echo "Please enter email address"
+#			;;		
+#		esac
+	
+	  #  then
+		#	echo "That is not a valid email address"
+ 
+		#else
+		 
+#	fi
+	#break
+	#read email
+done
 
 # refresh header
 clear 

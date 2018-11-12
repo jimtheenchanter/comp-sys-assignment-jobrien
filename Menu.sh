@@ -69,6 +69,7 @@ clear
 	read exitresponse
 		if [ $exitresponse == 'y' ]
 			then 
+				clear
            		  exit
 			else 
 			  ./Menu.sh
@@ -76,8 +77,8 @@ clear
 	;;
 	*)
 	
-    
-./Menu.sh
+    ./Menu.sh
+	;;
 esac
 
 	

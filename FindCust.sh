@@ -78,7 +78,7 @@ highlight Search Customer
 # returns the number of matching entries
 	grep -c -i "$anysearch" CustomerDetails.txt
 # returns the details of the matching entries 
-	grep  -i "$anysearch" CustomerDetails.txt 
+	grep  -i "$anysearch" CustomerDetails.txt  
 #	;;
 	
 #	m)
@@ -105,14 +105,13 @@ read input
 
 echo "(s)earch again"
 echo "(m)ain menu "
-echo "[e]mail found contacts"
 
 read redirect
 clear
 highlight Search Customer
-	while [[ $redirect != 's' ]] && [[ $redirect != 'm' ]] && [[ $redirect != 'e' ]] 
+	while [[ $redirect != 's' ]] && [[ $redirect != 'm' ]] 
 	do
-   		echo "Please choose 's' or 'm' "
+   		echo "Please choose 's' or 'm'  "
    	read redirect
 done
 
@@ -124,11 +123,7 @@ done
    	  [ $redirect == 'm' ]
 	then 
 	  ./Menu.sh
-	elif 
-   	  [ $redirect == 'e' ]
-	then 
-	  awk $anysearch >> tmp/emailRecipients
-	  ./EmailCust.sh
+		 
 	else 
 	./FindCust.sh
 fi
