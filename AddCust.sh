@@ -141,7 +141,7 @@ do
 	    if echo "${email}" | grep '^[a-zA-Z0-9]*@[a-zA-Z0-9]*\.[a-zA-Z0-9]*$' >/dev/null; then
         break
     else
-        echo Not Valid
+        echo Invalid email. Please try again.
     fi
 	   
 #	   elif [[ $email =~ '(.+)@(.+)' ]] ; 

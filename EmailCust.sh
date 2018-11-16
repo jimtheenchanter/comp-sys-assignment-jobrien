@@ -26,6 +26,7 @@ echo "3. Add Subject"
 echo "4. Compose Email"
 echo "5. --> Send"
 echo "6. Main Menu"
+echo "7. View Sent Emails"
 echo
 echo "Please select menu number:"
 read input
@@ -36,20 +37,29 @@ clear
 	grep @ CustomerDetails.txt | awk '{print $1 " " $2 "\t " $6}'
 	echo
 	echo "Please enter email address and press return"
-	read emailRecipients 
+	#read emailRecipients 
 	
 # validate email contains valid characters
-	case $emailRecipients in
-		*@?*.?*) 
-		;;
-		*)
+#	case $emailRecipients in
+#		*@?*.?*) 
+#		;;
+#		*)
+#
+#		echo $emailRecipients  is not a valid email address
+#		echo
+#		echo "Please enter email address"
+#		read emailRecipients
+#	esac
 
-		echo $emailRecipients  is not a valid email address
-		echo
-		echo "Please enter email address"
-		read emailRecipients
+while read emailRecipients;
 
-	esac
+do
+    if echo "${emailRecipients}" | grep '^[a-zA-Z0-9]*@[a-zA-Z0-9]*\.[a-zA-Z0-9]*$' >/dev/null; then
+        break
+    else
+        echo Invalid email. Please try again.
+    fi
+done	
 
 	echo "$emailRecipients" >> tmp/emailRecipients.txt
 	chmod +x tmp/emailRecipients.txt
@@ -161,7 +171,25 @@ clear
 # return to main menu
 	./Menu.sh
 	;;
-
+	7) 
+# return to main menu
+clear
+clear
+echo  $(date)
+echo =======================================
+echo "EMAIL WIZARD"
+echo =======================================
+echo "Sent Email Log"
+echo
+	cat tmp/emailLog.txt
+	echo
+	echo "Press enter to return to email menu"
+	read input
+	./Email.sh
+	;;
+	
+	
+	
 	*)
 # if any other key is pressed the email menu screen is refreshed
 	./EmailCust.sh	

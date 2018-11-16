@@ -1,5 +1,8 @@
-/nDate: Mon, Nov 12, 2018  3:24:30 PM
+//////////////////////////
+Date: Fri, Nov 16, 2018 10:00:51 AM
+bobby@womack.com
 buddy@holly.com
+curtis@mayfield.com
 frank@skinner.com
 frank@zappa.com
 john@coltrane.com
@@ -8,68 +11,20 @@ mark@smith.com
 norman@cook.com
 king@tubby.com
 peter@tosh.com
-Shaun@ryder.co.uk
+rob@zombie.com
 sly@stone.com
-//////////////////////////
-Date: Mon, Nov 12, 2018  3:26:55 PM
-buddy@holly.com
-frank@skinner.com
 frank@zappa.com
-john@coltrane.com
-john@entwistle.com
-mark@smith.com
-norman@cook.com
-king@tubby.com
-peter@tosh.com
-Shaun@ryder.co.uk
-sly@stone.com
-//////////////////////////
-Date: Mon, Nov 12, 2018  3:27:02 PM
-buddy@holly.com
-frank@skinner.com
-frank@zappa.com
-john@coltrane.com
-john@entwistle.com
-mark@smith.com
-norman@cook.com
-king@tubby.com
-peter@tosh.com
-Shaun@ryder.co.uk
-sly@stone.com
-//////////////////////////
-Date: Mon, Nov 12, 2018  3:27:04 PM
-buddy@holly.com
-frank@skinner.com
-frank@zappa.com
-john@coltrane.com
-john@entwistle.com
-mark@smith.com
-norman@cook.com
-king@tubby.com
-peter@tosh.com
-Shaun@ryder.co.uk
-sly@stone.com
-//////////////////////////
-Date: Mon, Nov 12, 2018  3:27:06 PM
-buddy@holly.com
-frank@skinner.com
-frank@zappa.com
-john@coltrane.com
-john@entwistle.com
-mark@smith.com
-norman@cook.com
-king@tubby.com
-peter@tosh.com
-Shaun@ryder.co.uk
-sly@stone.com
-//////////////////////////
-Date: Mon, Nov 12, 2018  3:35:25 PM
-norman@cook.com
-Exciting new sound!
-Hi Fatboy,
+Somthing for the weekend!
 
-Call me!
+Check it out!
 
-Exciting new things!
+Jimbo
 
-Jim
+//////////////////////////
+Date: Fri, Nov 16, 2018 10:09:57 AM
+buddy@holly.com
+Plane Tickets!
+You and all your friends can travel around the world!
+
+From Jim
+
